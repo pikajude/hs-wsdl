@@ -1,0 +1,5 @@
+Setup
+*.hi
+*.o
+dist
+test-data
