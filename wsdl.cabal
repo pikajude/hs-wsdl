@@ -16,23 +16,19 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 library
-  exposed-modules:     Network.SOAP.WSDL
-                       Network.SOAP.WSDL.TH
-                       Network.SOAP.WSDL.THTest
+  exposed-modules:     Text.XML.WSDL.Types
+                       Text.XML.WSDL.Parser
   -- other-modules:       
   -- other-extensions:    
   build-depends:       base >=4.8 && <4.10
                      , bytestring
                      , conduit
-                     , containers
                      , exceptions
-                     , file-embed
                      , mtl
-                     , template-haskell
+                     , network-uri
+                     , resourcet
                      , text
-                     , transformers
                      , xml-conduit
-                     , xml-conduit-writer
                      , xml-types
   hs-source-dirs:      src
   default-language:    Haskell2010
