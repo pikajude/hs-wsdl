@@ -11,6 +11,10 @@
 
 -- | A description of WSDLs. Most of the verbiage here is copied verbatim
 -- from the WSDL spec: see http://www.w3.org/TR/wsdl.
+--
+-- TODO:
+--   * Documentation support
+--   * Schema support
 module Text.XML.WSDL.Types where
 
 import Data.Text      (Text)
@@ -32,7 +36,7 @@ import GHC.Generics
 data WSDL = WSDL
           { targetNamespace    :: Maybe URI
           , documentName       :: Maybe Name
-          , types              :: WSDLTypes
+          , types              :: Maybe WSDLTypes
           , messages           :: [WSDLMessage]
           , portTypes          :: [WSDLPortType]
           , bindings           :: [WSDLBinding]

@@ -3,23 +3,22 @@
 
 name:                wsdl
 version:             0.1.0.0
--- synopsis:            
--- description:         
+synopsis:            WSDL parsing in Haskell
+description:
+  DO NOT USE, UNSTABLE AND INCOMPLETE.
+  .
+  This library provides a definition of, parsing and [TODO] generation of WSDL documents.
 license:             GPL-3
 license-file:        LICENSE
 author:              Jude Taylor
 maintainer:          me@jude.bio
--- copyright:           
-category:            Network
+category:            XML
 build-type:          Simple
--- extra-source-files:  
 cabal-version:       >=1.10
 
 library
   exposed-modules:     Text.XML.WSDL.Types
                        Text.XML.WSDL.Parser
-  -- other-modules:       
-  -- other-extensions:    
   build-depends:       base >=4.8 && <4.10
                      , bytestring
                      , conduit
@@ -33,3 +32,9 @@ library
   hs-source-dirs:      src
   default-language:    Haskell2010
   ghc-options:         -Wall
+
+test-suite spec
+  type:           exitcode-stdio-1.0
+  main-is:        hspec.hs
+  hs-source-dirs: tests
+  build-depends:  base, bytestring, file-embed, hspec, network-uri, wsdl

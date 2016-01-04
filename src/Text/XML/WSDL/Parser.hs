@@ -45,8 +45,18 @@ parseLBS t = runReaderT (P.parseLBS def t $$ parseWSDL) emptyParseState
 parseFile :: MonadResource m => FilePath -> m WSDL
 parseFile f = runReaderT (P.parseFile def f $$ parseWSDL) emptyParseState
 
+ignoreDocs :: MonadThrow m => ConduitM Event Event m b
+ignoreDocs = forever $ do
+    p <- await
+    case p of
+        Just d@(EventBeginElement n _) | nameLocalName n == "documentation" -> do
+            leftover d
+            void $ ignoreTree ((== "documentation") . nameLocalName)
+        Just x -> yield x
+        Nothing -> return ()
+
 parseWSDL :: MonadThrow m => ConduitM Event o (ReaderT ParseState m) WSDL
-parseWSDL = force "Missing WSDL" $ tag
+parseWSDL = (ignoreDocs =$) $ force "Missing WSDL" $ tag
     (\ n -> if nameLocalName n == "definitions" then Just n else Nothing)
     (\ n -> do
         tns <- (>>= parseURI . T.unpack) <$> attr "targetNamespace"
@@ -55,7 +65,7 @@ parseWSDL = force "Missing WSDL" $ tag
         )
     (\ (n, tns, docname) -> local (\ a -> a { psDocumentNamespace = nameNamespace n }) $ do
         xel <- many parseXElement
-        tys <- force "Missing WSDL types" parseTypes
+        tys <- parseTypes
         messages <- many parseMessage
         portTypes <- many parsePortType
         bindings <- many parseBinding

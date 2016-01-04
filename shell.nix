@@ -4,8 +4,9 @@ let
 
   inherit (nixpkgs) pkgs;
 
-  f = { mkDerivation, base, bytestring, conduit, exceptions, mtl
-      , network-uri, resourcet, stdenv, text, xml-conduit, xml-types
+  f = { mkDerivation, base, bytestring, conduit, exceptions
+      , file-embed, hspec, mtl, network-uri, resourcet, stdenv, text
+      , xml-conduit, xml-types
       }:
       mkDerivation {
         pname = "wsdl";
@@ -15,6 +16,9 @@ let
           base bytestring conduit exceptions mtl network-uri resourcet text
           xml-conduit xml-types
         ];
+        configureFlags = [ "--enable-coverage" ];
+        testHaskellDepends = [ base file-embed hspec ];
+        description = "WSDL parsing in Haskell";
         license = stdenv.lib.licenses.gpl3;
       };
 
