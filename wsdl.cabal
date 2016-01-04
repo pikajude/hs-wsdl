@@ -19,7 +19,7 @@ cabal-version:       >=1.10
 library
   exposed-modules:     Text.XML.WSDL.Types
                        Text.XML.WSDL.Parser
-  build-depends:       base >=4.8 && <4.10
+  build-depends:       base >= 4.7 && < 5
                      , bytestring
                      , conduit
                      , exceptions

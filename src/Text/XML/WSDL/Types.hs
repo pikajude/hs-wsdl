@@ -1,7 +1,8 @@
-{-# LANGUAGE CPP           #-}
+{-# LANGUAGE CPP                #-}
+{-# LANGUAGE DeriveDataTypeable #-}
 
 #ifdef __GLASGOW_HASKELL__
-{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveGeneric      #-}
 #define GENERIC , Generic
 #else
 #define GENERIC

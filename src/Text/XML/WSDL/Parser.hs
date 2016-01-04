@@ -1,15 +1,18 @@
+{-# LANGUAGE CPP                       #-}
 {-# LANGUAGE FlexibleContexts          #-}
 {-# LANGUAGE NoMonomorphismRestriction #-}
 {-# LANGUAGE OverloadedStrings         #-}
 {-# LANGUAGE RankNTypes                #-}
 {-# LANGUAGE RecordWildCards           #-}
-{-# LANGUAGE TemplateHaskell           #-}
 
 -- | For parsing WSDLs.
 module Text.XML.WSDL.Parser (
   parseLBS, parseFile
 ) where
 
+#if __GLASGOW_HASKELL__ <= 708
+import           Control.Applicative          (pure, (<$>))
+#endif
 import           Control.Monad
 import           Control.Monad.Catch          (MonadThrow, throwM)
 import           Control.Monad.Reader

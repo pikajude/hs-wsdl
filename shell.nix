@@ -16,8 +16,9 @@ let
           base bytestring conduit exceptions mtl network-uri resourcet text
           xml-conduit xml-types
         ];
-        configureFlags = [ "--enable-coverage" ];
-        testHaskellDepends = [ base file-embed hspec ];
+        testHaskellDepends = [
+          base bytestring file-embed hspec network-uri
+        ];
         description = "WSDL parsing in Haskell";
         license = stdenv.lib.licenses.gpl3;
       };

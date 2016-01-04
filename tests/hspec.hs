@@ -2,10 +2,11 @@
 {-# LANGUAGE TemplateHaskell   #-}
 
 import Control.Exception
-import Control.Monad
+import Control.Monad        hiding (forM_)
 import Data.ByteString.Lazy (fromStrict)
 import Data.Either
 import Data.FileEmbed
+import Data.Foldable        (forM_)
 import Network.URI
 import Test.Hspec
 import Text.XML.WSDL.Parser
