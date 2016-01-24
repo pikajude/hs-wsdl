@@ -2,7 +2,7 @@
 -- see http://haskell.org/cabal/users-guide/
 
 name:                wsdl
-version:             0.1.0.0
+version:             0.1.0.1
 synopsis:            WSDL parsing in Haskell
 description:
   DO NOT USE, UNSTABLE AND INCOMPLETE.
@@ -15,6 +15,11 @@ maintainer:          me@jude.bio
 category:            XML
 build-type:          Simple
 cabal-version:       >=1.10
+extra-source-files:  tests/hello.wsdl
+
+source-repository head
+  type:     git
+  location: https://github.com/pikajude/hs-wsdl.git
 
 library
   exposed-modules:     Text.XML.WSDL.Types
